@@ -12,10 +12,12 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import * as actions from '../../actions'
+import Recipe from '../Recipe'
 
 const ingredientList = [
   "flour", "sugar", "salt", "butter", "milk"
 ]
+
 
 class Home extends Component {
   constructor(props) {
@@ -25,11 +27,14 @@ class Home extends Component {
     this.fetchSearch = this.fetchSearch.bind(this)
     this.state = {
       term: "",
-      ingredients: ["milk"]
+      ingredients: ["milk"],
     }
   }
   fetchSearch () {
-    // TODO: something is missing here for fetching
+    console.log(`searching recipes...`);
+    const searchRecipes = this.props.searchRecipes;
+    const {term, ingredients} = this.state;
+    searchRecipes(term, ingredients);
   }
   handleSearch(event) {
     const term = event.target.value
@@ -45,9 +50,14 @@ class Home extends Component {
     }
     this.setState({ingredients})
   }
+  handleFindRecipe(id) {
+    console.log(`Finding recipe ID: ${id}`);
+    const findRecipe = this.props.findRecipe;
+    findRecipe(id);
+  }
   render () {
-    const {term, ingredients} = this.state
-    const {recipes, isLoading} = this.props
+    const {term, ingredients} = this.state;
+    const {recipes, isLoading} = this.props;
     return (
       <HomeWrapper>
         <Input
@@ -82,7 +92,7 @@ class Home extends Component {
           recipes && (
             <List>
               {recipes.map( recipe =>
-                <ListItem key={recipe.id}>
+                <ListItem key={recipe.id} onClick={() => this.handleFindRecipe(recipe.id)}>
                   <ListItemText primary={recipe.name} />
                 </ListItem>
               )}
@@ -91,23 +101,20 @@ class Home extends Component {
         }
         {isLoading && <LinearProgress />}
         <Divider />
-        {/*
-          TODO: Add a recipe component here.
-          I'm expecting you to have it return null or a component based on the redux state, not passing any props from here
-          I want to see how you wire up a component with connect and build actions.
-        */}
+        <Recipe />
       </HomeWrapper>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { search } = state
-  return {...search}
+  const { search, recipe } = state
+  return {...search, recipe}
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   searchRecipes: actions.searchRecipes,
+  findRecipe: actions.findRecipe,
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home, Recipe)
