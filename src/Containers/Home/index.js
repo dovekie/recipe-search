@@ -31,10 +31,10 @@ class Home extends Component {
     }
   }
   fetchSearch () {
-    console.log(`searching recipes...`);
-    const searchRecipes = this.props.searchRecipes;
-    const {term, ingredients} = this.state;
-    searchRecipes(term, ingredients);
+    console.log(`searching recipes...`)
+    const searchRecipes = this.props.searchRecipes
+    const {term, ingredients} = this.state
+    searchRecipes(term, ingredients)
   }
   handleSearch(event) {
     const term = event.target.value
@@ -51,13 +51,13 @@ class Home extends Component {
     this.setState({ingredients})
   }
   handleFindRecipe(id) {
-    console.log(`Finding recipe ID: ${id}`);
-    const findRecipe = this.props.findRecipe;
-    findRecipe(id);
+    console.log(`Finding recipe ID: ${id}`)
+    const findRecipe = this.props.findRecipe
+    findRecipe(id)
   }
   render () {
-    const {term, ingredients} = this.state;
-    const {recipes, isLoading} = this.props;
+    const {term, ingredients} = this.state
+    const {recipes, isLoading} = this.props
     return (
       <HomeWrapper>
         <Input

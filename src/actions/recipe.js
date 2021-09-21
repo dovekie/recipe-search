@@ -25,7 +25,7 @@ export const executeFind = async (recipeId) => {
     method: 'GET',
   })
   const findResults = await response.json()
-  console.log("found: " + findResults.name);
+  console.log("found: " + findResults.name)
   return findResults
 }
 

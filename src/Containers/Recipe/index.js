@@ -10,13 +10,13 @@ class Recipe extends Component {
   }
 
   render() {
-    const recipe = this.props.recipe;
+    const recipe = this.props.recipe
 
     if (!recipe) {
-      return null;
+      return null
     }
 
-    const {name, ingredients, instructions} = recipe;
+    const {name, ingredients, instructions} = recipe
     return (
       <div>
         <div>
@@ -28,13 +28,12 @@ class Recipe extends Component {
               recipe && (
                 <List subheader="Ingredients">
                   {ingredients.map((ingredient) => {
-                    const ingredientText = `${ingredient.amount} ${ingredient.unit} of ${ingredient.name}`;
+                    const ingredientText = `${ingredient.amount} ${ingredient.unit} of ${ingredient.name}`
                     return (
                       <ListItem key={ingredientText}>
                         <ListItemText primary={ingredientText} />
                       </ListItem>
-                    );
-                    }
+                    )}
                   )}
                 </List>
               )
@@ -46,7 +45,7 @@ class Recipe extends Component {
           <p>{instructions}</p>
         </div>
       </div>
-    );
+    )
   }
 }
 

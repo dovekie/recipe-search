@@ -1,13 +1,13 @@
-import { Request, Response, NextFunction } from "express"
-import { RecipeModel, Ingredient } from "../models"
+import { Request, Response} from "express"
+import { RecipeModel} from "../models"
 
-export const recipeMiddleware = async (req: Request, res: Response, next: NextFunction) : Promise<void> => {
-  const recipeId = req.params.id;
-  const recipe = await RecipeModel.findById(recipeId);
+export const recipeMiddleware = async (req: Request, res: Response) : Promise<void> => {
+  const recipeId = req.params.id
+  const recipe = await RecipeModel.findById(recipeId)
 
   if (!recipe) {
-    res.status(404).send({error: "Recipe not found"});
+    res.status(404).send({error: "Recipe not found"})
   } else {
-    res.send(recipe);
+    res.send(recipe)
   }
 }
