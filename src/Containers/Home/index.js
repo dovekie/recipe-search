@@ -117,4 +117,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   findRecipe: actions.findRecipe,
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home, Recipe)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
