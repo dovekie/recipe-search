@@ -26,15 +26,24 @@ class Home extends Component {
     this.handleIngredient = this.handleIngredient.bind(this)
     this.fetchSearch = this.fetchSearch.bind(this)
     this.state = {
-      term: "",
-      ingredients: ["milk"],
+      term: localStorage.getItem('term') ? localStorage.getItem('term') : "",
+      ingredients: localStorage.getItem('ingredients') ? localStorage.getItem('ingredients').split(',') :  ["milk"],
     }
   }
+
+  componentDidMount() {
+    if (this.state.useExistingSearch) {
+      this.fetchSearch()
+    }
+  }
+
   fetchSearch () {
     console.log(`searching recipes...`)
     const searchRecipes = this.props.searchRecipes
     const {term, ingredients} = this.state
     searchRecipes(term, ingredients)
+    localStorage.setItem('term', this.state.term)
+    localStorage.setItem('ingredients', this.state.ingredients)
   }
   handleSearch(event) {
     const term = event.target.value
