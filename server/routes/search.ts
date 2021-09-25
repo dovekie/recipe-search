@@ -23,7 +23,7 @@ export const searchMiddleware = async (req: Request, res: Response) : Promise<vo
   if (name) {
     query.name = new RegExp(escapeRegex(name), "gi")
   }
-  if (ingredients) {
+  else if (ingredients) {
     const whatsLeft = allIngredients.filter(ing => !ingredients.includes(ing))
     query["ingredients.name"] = {$nin: whatsLeft}
   }
