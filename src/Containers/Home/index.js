@@ -42,8 +42,8 @@ class Home extends Component {
     const searchRecipes = this.props.searchRecipes
     const {term, ingredients} = this.state
     searchRecipes(term, ingredients)
-    localStorage.setItem('term', this.state.term)
-    localStorage.setItem('ingredients', this.state.ingredients)
+    localStorage.setItem('term', term)
+    localStorage.setItem('ingredients', ingredients)
   }
   handleSearch(event) {
     const term = event.target.value

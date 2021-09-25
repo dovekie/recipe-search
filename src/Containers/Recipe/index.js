@@ -26,7 +26,7 @@ class Recipe extends Component {
           <ul>
             {
               recipe && (
-                <List subheader="Ingredients">
+                <List subheader='Ingredients'>
                   {ingredients.map((ingredient) => {
                     const ingredientText = `${ingredient.amount} ${ingredient.unit} of ${ingredient.name}`
                     return (
