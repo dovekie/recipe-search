@@ -18,7 +18,6 @@ const ingredientList = [
   "flour", "sugar", "salt", "butter", "milk"
 ]
 
-
 class Home extends Component {
   constructor(props) {
     super(props)
